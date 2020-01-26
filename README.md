@@ -7,4 +7,4 @@ The scripts are about:
 * bisection_method.js: Computes the root of a polynomial according to the bisection method. Basic implementation I made in 2016 to run the algorithm.
 * eratosthenes_sieve.js: Computes prime numbers by using the eratosthenes sieve algorithm. Basic implementation I made in 2016 to run the algorithm.
 
-![screenshot_1](https://github.com/TobiasBriones/example.math.computation.js.misc_computations_in_js/blob/master/_repo/assets/screenshot_1.png)
+![Screenshot 1](https://raw.githubusercontent.com/TobiasBriones/images/master/example-projects/example.math.computation.js.misc_computations_in_js/screenshot_1.png)
