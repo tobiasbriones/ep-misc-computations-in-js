@@ -12,45 +12,45 @@ console.log('Getting the first prime numbers up to 101');
 console.log(getPrimes());
 console.log('');
 
-function fillCriba(criba, length) {
-    var value = (criba.length === 0) ? 2 : criba[criba.length - 1] + 1;
-
-    for(let i = 0; i < length; i++) {
-        criba.push(value);
-        value++;
-    }
+function fillSieve(sieve, length) {
+  let value = (sieve.length === 0) ? 2 : sieve[sieve.length - 1] + 1;
+  
+  for (let i = 0; i < length; i++) {
+    sieve.push(value);
+    value++;
+  }
 }
 
-function remove(criba, position) {
-    criba[position] = null;
+function remove(sieve, position) {
+  sieve[position] = null;
 }
 
-function parseCriba(criba, startPos) {
-    var current = criba[startPos];
-    var currentPos = startPos;
-
-    while(criba.length > currentPos + current) {
-        currentPos += current;
-
-        remove(criba, currentPos);
-    }
+function parseSieve(sieve, startPos) {
+  let current = sieve[startPos];
+  let currentPos = startPos;
+  
+  while (sieve.length > currentPos + current) {
+    currentPos += current;
+    
+    remove(sieve, currentPos);
+  }
 }
 
-function runCriba(criba) {
-    var primes = Array();
-
-    for(let i = 0; i < criba.length; i++) {
-        if(criba[i] != null) {
-            primes.push(criba[i]);
-            parseCriba(criba, i);
-        }
+function runSieve(sieve) {
+  let primes = Array();
+  
+  for (let i = 0; i < sieve.length; i++) {
+    if (sieve[i] != null) {
+      primes.push(sieve[i]);
+      parseSieve(sieve, i);
     }
-    return primes;
+  }
+  return primes;
 }
 
 function getPrimes(length = 100) {
-    const criba = Array();
-
-    fillCriba(criba, length);
-    return runCriba(criba);
+  const sieve = Array();
+  
+  fillSieve(sieve, length);
+  return runSieve(sieve);
 }
