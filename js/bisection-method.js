@@ -5,34 +5,35 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-console.log('');
-console.log('%cBisection method script', 'font-weight:bold;font-size:24px');
+export function runBisectionMethod() {
+  const f = new Polynomial();
 
-// Set the polynomial
-const f = new Polynomial();
+  console.log('');
+  console.log('%cBisection method script', 'font-weight:bold;font-size:24px');
 
-// f(x) = x^6 - 3x - 1
-f.addTerm('x', 6);
-f.addSign('-');
-f.addTerm('3x');
-f.addSign('-');
-f.addTerm('1');
+  // f(x) = x^6 - 3x - 1
+  f.addTerm('x', 6);
+  f.addSign('-');
+  f.addTerm('3x');
+  f.addSign('-');
+  f.addTerm('1');
 
-// Run the algorithm and print the result!
-console.log(
-  'Running bisection method for %cf(x) = x^6 - 3x - 1 in [-1, 0] and default iterations (50)',
-  'font-weight:bold'
-);
-console.log(bisect(f, [-1, 0]));
-console.log('');
-console.log(
-  'Running bisection method for %cf(x) = x^6 - 3x - 1 in [1, 2] and 8 iterations',
-  'font-weight:bold'
-);
-console.log(bisect(f, [1, 2], 8));
+  // Run the algorithm and print the result!
+  console.log(
+    'Running bisection method for %cf(x) = x^6 - 3x - 1 in [-1, 0] and default iterations (50)',
+    'font-weight:bold'
+  );
+  console.log(bisect(f, [-1, 0]));
+  console.log('');
+  console.log(
+    'Running bisection method for %cf(x) = x^6 - 3x - 1 in [1, 2] and 8 iterations',
+    'font-weight:bold'
+  );
+  console.log(bisect(f, [1, 2], 8));
 
-console.log('');
-console.log('');
+  console.log('');
+  console.log('');
+}
 
 // Algorithm of bisection
 function bisect(polynomial, interval, i = 50) {

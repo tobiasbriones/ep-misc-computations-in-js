@@ -5,12 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-console.log('');
-console.log('%cEratosthenes sieve script', 'font-weight:bold;font-size:24px');
+export function runEratosthenesSieve() {
+  console.log('');
+  console.log('%cEratosthenes sieve script', 'font-weight:bold;font-size:24px');
 
-console.log('Getting the first prime numbers up to 101');
-console.log(getPrimes());
-console.log('');
+  console.log('Getting the first prime numbers up to 101');
+  console.log(getPrimes());
+  console.log('');
+}
 
 function fillSieve(sieve, length) {
   let value = (sieve.length === 0) ? 2 : sieve[sieve.length - 1] + 1;
