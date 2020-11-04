@@ -40,14 +40,14 @@ function bisect(polynomial, interval, i = 50) {
   let b = parseInt(interval[1]);
   let c = 0;
   let error = 0;
-  
+
   do {
     c = (a + b) / 2;
     let fa = polynomial.eval(a);
     let fb = polynomial.eval(b);
     let fc = polynomial.eval(c);
     error = (Math.abs(a - b) / 2);
-    
+
     if (fc === 0) {
       break;
     }
@@ -74,18 +74,18 @@ function hasOppositeSigns(a, b) {
 
 // Polynomial class
 function Polynomial() {
-  
+
   this.terms = Array();
-  
-  this.addSign = function(sign) {
+
+  this.addSign = function (sign) {
     let last = this.terms[(this.terms.length - 1)];
-    
+
     if (isSign(last)) {
       let boolSign = last === '+';
       let boolInSign = sign === '+';
       let newBoolSign = boolSign & boolInSign;
       let newSign = (newBoolSign) ? '+' : '-';
-      
+
       this.terms.pop();
       this.terms.push(newSign);
     }
@@ -93,11 +93,11 @@ function Polynomial() {
       this.terms.push(sign);
     }
   };
-  
-  this.addTerm = function(value, exponent = 1) {
+
+  this.addTerm = function (value, exponent = 1) {
     if (value[value.length - 1] === 'x') {
       let factor = value.substr(0, value.length - 1);
-      
+
       if (factor.length === 0) {
         factor = 1;
       }
@@ -107,11 +107,11 @@ function Polynomial() {
       this.terms.push(value);
     }
   };
-  
-  this.eval = function(value) {
+
+  this.eval = function (value) {
     let operation = '+';
     let result = 0;
-    
+
     this.terms.forEach(item => {
       if (isSign(item)) {
         operation = item;
@@ -119,7 +119,7 @@ function Polynomial() {
       else if (item.length === 3) {
         let factor = item[1];
         let exponent = item[2];
-        
+
         if (operation[0] === '+') {
           result += factor * Math.pow(value, exponent);
         }
@@ -140,9 +140,9 @@ function Polynomial() {
     });
     return result;
   };
-  
+
   function isSign(value) {
     return value[0] === '+' || value[0] === '-';
   }
-  
+
 }

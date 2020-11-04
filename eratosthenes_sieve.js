@@ -14,7 +14,7 @@ console.log('');
 
 function fillSieve(sieve, length) {
   let value = (sieve.length === 0) ? 2 : sieve[sieve.length - 1] + 1;
-  
+
   for (let i = 0; i < length; i++) {
     sieve.push(value);
     value++;
@@ -28,17 +28,17 @@ function remove(sieve, position) {
 function parseSieve(sieve, startPos) {
   let current = sieve[startPos];
   let currentPos = startPos;
-  
+
   while (sieve.length > currentPos + current) {
     currentPos += current;
-    
+
     remove(sieve, currentPos);
   }
 }
 
 function runSieve(sieve) {
   let primes = Array();
-  
+
   for (let i = 0; i < sieve.length; i++) {
     if (sieve[i] != null) {
       primes.push(sieve[i]);
@@ -50,7 +50,7 @@ function runSieve(sieve) {
 
 function getPrimes(length = 100) {
   const sieve = Array();
-  
+
   fillSieve(sieve, length);
   return runSieve(sieve);
 }
