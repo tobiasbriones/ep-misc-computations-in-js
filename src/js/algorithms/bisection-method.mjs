@@ -5,6 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+const DEF_ITERATIONS_NUMBER = 50;
+const NO_ROOTS_MSG = `
+There aren't roots in the interval or try to give an interval
+in which only the root that you are looking for of the polynomial is enclosed in
+it and with a change of signs!
+`;
+
 export function runBisectionMethod() {
   const f = new Polynomial();
 
@@ -35,19 +42,46 @@ export function runBisectionMethod() {
   console.log('');
 }
 
-// Algorithm of bisection
-function bisect(polynomial, interval, i = 50) {
-  let a = parseInt(interval[0]);
-  let b = parseInt(interval[1]);
+function newResult(polynomial, c, error) {
+  return {
+    found: true,
+    c: c,
+    image: polynomial.evaluate(c),
+    error: error
+  };
+}
+
+function newNotFoundResult() {
+  return {
+    found: false,
+    c: 0,
+    image: 0,
+    error: 0
+  };
+}
+
+function bisect(polynomial, interval, i = DEF_ITERATIONS_NUMBER) {
+  const a = parseInt(interval[0]);
+  const b = parseInt(interval[1]);
+  const result = runBisectAlgorithm(polynomial, a, b, i);
+  return newBisectResultMsg(result);
+}
+
+function runBisectAlgorithm(polynomial, aValue, bValue, iterationsNumber) {
+  let result = newNotFoundResult();
+  let a = aValue;
+  let b = bValue;
   let c = 0;
   let error = 0;
+  let i = iterationsNumber;
+  let hasRoot = true;
 
   do {
-    c = (a + b) / 2;
-    let fa = polynomial.eval(a);
-    let fb = polynomial.eval(b);
-    let fc = polynomial.eval(c);
     error = (Math.abs(a - b) / 2);
+    c = (a + b) / 2;
+    let fa = polynomial.evaluate(a);
+    let fb = polynomial.evaluate(b);
+    let fc = polynomial.evaluate(c);
 
     if (fc === 0) {
       break;
@@ -59,18 +93,37 @@ function bisect(polynomial, interval, i = 50) {
       a = c;
     }
     else {
-      return `There aren't roots in the interval or try to give an interval
-                    in which only the root that you are looking for of the polynomial is enclosed in it
-                    and with a change of signs!`;
+      hasRoot = false;
+      break;
     }
     i--;
   }
   while (i !== 0);
-  return `Root found at c = ${ c }, F(c) = ${ polynomial.eval(c) }, |a - b| / 2 = ${ error }`;
+
+  if (hasRoot) {
+    result = newResult(polynomial, c, error);
+  }
+  return result;
 }
 
 function hasOppositeSigns(a, b) {
-  return ((a < 0 && b >= 0) || (a >= 0 && b < 0));
+  const isNegativeAndNonNegative = (a, b) => {
+    return a < 0 && b >= 0;
+  };
+  const isNonNegativeAndNegative = (a, b) => {
+    return a >= 0 && b < 0;
+  };
+  return isNegativeAndNonNegative(a, b) || isNonNegativeAndNegative(a, b);
+}
+
+function newBisectResultMsg(result) {
+  const { found, c, image, error } = result;
+  let msg = NO_ROOTS_MSG;
+
+  if (found) {
+    msg = `Root found at c = ${ c }, F(c) = ${ image }, |a - b| / 2 = ${ error }`;
+  }
+  return msg;
 }
 
 // Polynomial class
@@ -109,7 +162,7 @@ function Polynomial() {
     }
   };
 
-  this.eval = function (value) {
+  this.evaluate = function (value) {
     let operation = '+';
     let result = 0;
 
