@@ -42,22 +42,45 @@ export function runBisectionMethod() {
   console.log('');
 }
 
-function newResult(polynomial, c, error) {
+function Result(found, c, image, error) {
   return {
-    found: true,
+    found: found,
     c: c,
-    image: polynomial.evaluate(c),
+    image: image,
     error: error
   };
 }
 
-function newNotFoundResult() {
-  return {
-    found: false,
+function ResultBuilder() {
+  const self = {
+    polynomial: null,
     c: 0,
-    image: 0,
-    error: 0
+    error: 0,
+    set: (polynomial, c, error) => set.call(self, polynomial, c, error),
+    setRootNotFound: (polynomial) => setRootNotFound.call(self, polynomial),
+    build: () => build.call(self)
   };
+  return self;
+
+  function set(polynomial, c, error) {
+    this.polynomial = polynomial;
+    this.c = c;
+    this.error = error;
+    return this;
+  }
+
+  function setRootNotFound(polynomial) {
+    return set.call(this, polynomial, 0, 0);
+  }
+
+  function build() {
+    return Result(
+      true,
+      this.c,
+      this.polynomial.evaluate(this.c),
+      this.error
+    );
+  }
 }
 
 function bisect(polynomial, interval, i = DEF_ITERATIONS_NUMBER) {
@@ -68,7 +91,7 @@ function bisect(polynomial, interval, i = DEF_ITERATIONS_NUMBER) {
 }
 
 function runBisectAlgorithm(polynomial, aValue, bValue, iterationsNumber) {
-  let result = newNotFoundResult();
+  let result = ResultBuilder().setRootNotFound(polynomial).build();
   let a = aValue;
   let b = bValue;
   let c = 0;
@@ -101,7 +124,7 @@ function runBisectAlgorithm(polynomial, aValue, bValue, iterationsNumber) {
   while (i !== 0);
 
   if (hasRoot) {
-    result = newResult(polynomial, c, error);
+    result = ResultBuilder().set(polynomial, c, error).build();
   }
   return result;
 }
@@ -126,13 +149,16 @@ function newBisectResultMsg(result) {
   return msg;
 }
 
-// Polynomial class
 function Polynomial() {
+  const terms = Array();
+  return {
+    addSign,
+    addTerm,
+    evaluate
+  };
 
-  this.terms = Array();
-
-  this.addSign = function (sign) {
-    let last = this.terms[(this.terms.length - 1)];
+  function addSign(sign) {
+    let last = terms[(terms.length - 1)];
 
     if (isSign(last)) {
       let boolSign = last === '+';
@@ -140,33 +166,33 @@ function Polynomial() {
       let newBoolSign = boolSign & boolInSign;
       let newSign = (newBoolSign) ? '+' : '-';
 
-      this.terms.pop();
-      this.terms.push(newSign);
+      terms.pop();
+      terms.push(newSign);
     }
     else {
-      this.terms.push(sign);
+      terms.push(sign);
     }
-  };
+  }
 
-  this.addTerm = function (value, exponent = 1) {
+  function addTerm(value, exponent = 1) {
     if (value[value.length - 1] === 'x') {
       let factor = value.substr(0, value.length - 1);
 
       if (factor.length === 0) {
         factor = 1;
       }
-      this.terms.push([value, parseFloat(factor), exponent]);
+      terms.push([value, parseFloat(factor), exponent]);
     }
     else {
-      this.terms.push(value);
+      terms.push(value);
     }
-  };
+  }
 
-  this.evaluate = function (value) {
+  function evaluate(value) {
     let operation = '+';
     let result = 0;
 
-    this.terms.forEach(item => {
+    terms.forEach(item => {
       if (isSign(item)) {
         operation = item;
       }
@@ -193,7 +219,7 @@ function Polynomial() {
       }
     });
     return result;
-  };
+  }
 
   function isSign(value) {
     return value[0] === '+' || value[0] === '-';
