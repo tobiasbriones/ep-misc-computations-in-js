@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export function runEratosthenesSieve() {
+export function runEratosthenesSieveExample() {
   console.log('');
   console.log('%cEratosthenes sieve script', 'font-weight:bold;font-size:24px');
 
@@ -14,7 +14,7 @@ export function runEratosthenesSieve() {
   console.log('');
 }
 
-function getPrimes(length = 100) {
+export function getPrimes(length = 100) {
   const sieve = Array();
 
   fillSieve(sieve, length);

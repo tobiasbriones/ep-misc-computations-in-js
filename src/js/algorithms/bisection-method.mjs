@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Tobias Briones.
+ * Copyright (c) 2019-2020 Tobias Briones.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -14,7 +14,7 @@ in which only the root that you are looking for of the polynomial is enclosed in
 it and with a change of signs!
 `;
 
-export function runBisectionMethod() {
+export function runBisectionMethodExample() {
   const f = new Polynomial();
 
   console.log('');
@@ -44,48 +44,7 @@ export function runBisectionMethod() {
   console.log('');
 }
 
-function result(found, c, image, error) {
-  return {
-    found: found,
-    c: c,
-    image: image,
-    error: error
-  };
-}
-
-function resultBuilder() {
-  const self = {
-    polynomial: null,
-    c: 0,
-    error: 0,
-    set: (polynomial, c, error) => set.call(self, polynomial, c, error),
-    setRootNotFound: (polynomial) => setRootNotFound.call(self, polynomial),
-    build: () => build.call(self)
-  };
-  return self;
-
-  function set(polynomial, c, error) {
-    this.polynomial = polynomial;
-    this.c = c;
-    this.error = error;
-    return this;
-  }
-
-  function setRootNotFound(polynomial) {
-    return set.call(this, polynomial, 0, 0);
-  }
-
-  function build() {
-    return result(
-      true,
-      this.c,
-      this.polynomial.evaluate(this.c),
-      this.error
-    );
-  }
-}
-
-function bisect(polynomial, interval, i = DEF_ITERATIONS_NUMBER) {
+export function bisect(polynomial, interval, i = DEF_ITERATIONS_NUMBER) {
   const a = parseInt(interval[0]);
   const b = parseInt(interval[1]);
   const result = runBisectAlgorithm(polynomial, a, b, i);
@@ -129,6 +88,47 @@ function runBisectAlgorithm(polynomial, aValue, bValue, iterationsNumber) {
     result = resultBuilder().set(polynomial, c, error).build();
   }
   return result;
+}
+
+function result(found, c, image, error) {
+  return {
+    found: found,
+    c: c,
+    image: image,
+    error: error
+  };
+}
+
+function resultBuilder() {
+  const self = {
+    polynomial: null,
+    c: 0,
+    error: 0,
+    set: (polynomial, c, error) => set.call(self, polynomial, c, error),
+    setRootNotFound: (polynomial) => setRootNotFound.call(self, polynomial),
+    build: () => build.call(self)
+  };
+  return self;
+
+  function set(polynomial, c, error) {
+    this.polynomial = polynomial;
+    this.c = c;
+    this.error = error;
+    return this;
+  }
+
+  function setRootNotFound(polynomial) {
+    return set.call(this, polynomial, 0, 0);
+  }
+
+  function build() {
+    return result(
+      true,
+      this.c,
+      this.polynomial.evaluate(this.c),
+      this.error
+    );
+  }
 }
 
 function hasOppositeSigns(a, b) {

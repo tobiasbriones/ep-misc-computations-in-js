@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { runBisectionMethod } from './algorithms/bisection-method.mjs';
-import { runEratosthenesSieve } from './algorithms/eratosthenes-sieve.mjs';
+import { runBisectionMethodExample } from './algorithms/bisection-method.mjs';
+import { runEratosthenesSieveExample } from './algorithms/eratosthenes-sieve.mjs';
 
-runBisectionMethod();
-runEratosthenesSieve();
+runBisectionMethodExample();
+runEratosthenesSieveExample();
