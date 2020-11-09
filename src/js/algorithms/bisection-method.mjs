@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import Polynomial from '../tools/polynomial.mjs';
+
 const DEF_ITERATIONS_NUMBER = 50;
 const NO_ROOTS_MSG = `
 There aren't roots in the interval or try to give an interval
@@ -147,82 +149,4 @@ function newBisectResultMsg(result) {
     msg = `Root found at c = ${ c }, F(c) = ${ image }, |a - b| / 2 = ${ error }`;
   }
   return msg;
-}
-
-function Polynomial() {
-  const terms = Array();
-  return {
-    addSign,
-    addTerm,
-    evaluate
-  };
-
-  function addSign(sign) {
-    let last = terms[(terms.length - 1)];
-
-    if (isSign(last)) {
-      let boolSign = last === '+';
-      let boolInSign = sign === '+';
-      let newBoolSign = boolSign & boolInSign;
-      let newSign = (newBoolSign) ? '+' : '-';
-
-      terms.pop();
-      terms.push(newSign);
-    }
-    else {
-      terms.push(sign);
-    }
-  }
-
-  function addTerm(value, exponent = 1) {
-    if (value[value.length - 1] === 'x') {
-      let factor = value.substr(0, value.length - 1);
-
-      if (factor.length === 0) {
-        factor = 1;
-      }
-      terms.push([value, parseFloat(factor), exponent]);
-    }
-    else {
-      terms.push(value);
-    }
-  }
-
-  function evaluate(value) {
-    let operation = '+';
-    let result = 0;
-
-    terms.forEach(item => {
-      if (isSign(item)) {
-        operation = item;
-      }
-      else if (item.length === 3) {
-        let factor = item[1];
-        let exponent = item[2];
-
-        if (operation[0] === '+') {
-          result += factor * Math.pow(value, exponent);
-        }
-        else {
-          result -= factor * Math.pow(value, exponent);
-        }
-        operation = '+';
-      }
-      else {
-        if (operation[0] === '+') {
-          result += parseFloat(item);
-        }
-        else {
-          result -= parseFloat(item);
-        }
-        operation = '+';
-      }
-    });
-    return result;
-  }
-
-  function isSign(value) {
-    return value[0] === '+' || value[0] === '-';
-  }
-
 }
