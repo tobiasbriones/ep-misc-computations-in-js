@@ -14,8 +14,18 @@ export function runEratosthenesSieve() {
   console.log('');
 }
 
+function getPrimes(length = 100) {
+  const sieve = Array();
+
+  fillSieve(sieve, length);
+  return runSieve(sieve);
+}
+
 function fillSieve(sieve, length) {
-  let value = (sieve.length === 0) ? 2 : sieve[sieve.length - 1] + 1;
+  const initialValue = sieve => {
+    return (sieve.length === 0) ? 2 : sieve[sieve.length - 1] + 1
+  };
+  let value = initialValue(sieve);
 
   for (let i = 0; i < length; i++) {
     sieve.push(value);
@@ -23,8 +33,16 @@ function fillSieve(sieve, length) {
   }
 }
 
-function remove(sieve, position) {
-  sieve[position] = null;
+function runSieve(sieve) {
+  const primes = Array();
+
+  for (let i = 0; i < sieve.length; i++) {
+    if (sieve[i] != null) {
+      primes.push(sieve[i]);
+      parseSieve(sieve, i);
+    }
+  }
+  return primes;
 }
 
 function parseSieve(sieve, startPos) {
@@ -38,21 +56,6 @@ function parseSieve(sieve, startPos) {
   }
 }
 
-function runSieve(sieve) {
-  let primes = Array();
-
-  for (let i = 0; i < sieve.length; i++) {
-    if (sieve[i] != null) {
-      primes.push(sieve[i]);
-      parseSieve(sieve, i);
-    }
-  }
-  return primes;
-}
-
-function getPrimes(length = 100) {
-  const sieve = Array();
-
-  fillSieve(sieve, length);
-  return runSieve(sieve);
+function remove(sieve, position) {
+  sieve[position] = null;
 }
