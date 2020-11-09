@@ -44,7 +44,7 @@ export function runBisectionMethod() {
   console.log('');
 }
 
-function Result(found, c, image, error) {
+function result(found, c, image, error) {
   return {
     found: found,
     c: c,
@@ -53,7 +53,7 @@ function Result(found, c, image, error) {
   };
 }
 
-function ResultBuilder() {
+function resultBuilder() {
   const self = {
     polynomial: null,
     c: 0,
@@ -76,7 +76,7 @@ function ResultBuilder() {
   }
 
   function build() {
-    return Result(
+    return result(
       true,
       this.c,
       this.polynomial.evaluate(this.c),
@@ -93,7 +93,7 @@ function bisect(polynomial, interval, i = DEF_ITERATIONS_NUMBER) {
 }
 
 function runBisectAlgorithm(polynomial, aValue, bValue, iterationsNumber) {
-  let result = ResultBuilder().setRootNotFound(polynomial).build();
+  let result = resultBuilder().setRootNotFound(polynomial).build();
   let a = aValue;
   let b = bValue;
   let c = 0;
@@ -126,7 +126,7 @@ function runBisectAlgorithm(polynomial, aValue, bValue, iterationsNumber) {
   while (i !== 0);
 
   if (hasRoot) {
-    result = ResultBuilder().set(polynomial, c, error).build();
+    result = resultBuilder().set(polynomial, c, error).build();
   }
   return result;
 }
