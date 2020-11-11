@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import Monomial from '../tools/monomial.mjs';
 import Polynomial from '../tools/polynomial.mjs';
 
 const DEF_ITERATIONS_NUMBER = 50;
@@ -21,11 +22,9 @@ export function runBisectionMethodExample() {
   console.log('%cBisection method script', 'font-weight:bold;font-size:24px');
 
   // f(x) = x^6 - 3x - 1
-  f.addTerm('x', 6);
-  f.addSign('-');
-  f.addTerm('3x');
-  f.addSign('-');
-  f.addTerm('1');
+  f.addMonomial(new Monomial(1, 6));
+  f.addMonomial(new Monomial(-3, 1));
+  f.addMonomial(new Monomial(-1));
 
   // Run the algorithm and print the result!
   console.log(
