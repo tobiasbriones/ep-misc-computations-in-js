@@ -9,9 +9,11 @@ import { Monomial } from './monomial.mjs';
 
 export class Polynomial {
   #monomials;
+  #isConstant;
 
   constructor() {
     this.#monomials = [];
+    this.#isConstant = true;
   }
 
   toString() {
@@ -23,8 +25,16 @@ export class Polynomial {
     return str;
   };
 
+  isConstant() {
+    return this.#isConstant;
+  }
+
   addMonomial(monomial) {
     this.#monomials.push(monomial);
+
+    if (!monomial.isConstant()) {
+      this.#isConstant = false;
+    }
   };
 
   evaluate(value) {

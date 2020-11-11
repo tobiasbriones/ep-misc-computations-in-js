@@ -3,6 +3,10 @@
   "version": "1.0.1",
   "description": "Example project where I compute miscellaneous problems of applied math in JS",
   "private": true,
+  "scripts": {
+    "test": "jest --config=jest.config.js",
+    "start": "webpack --mode development"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TobiasBriones/example.math.computation.js.misc-computations-in-js.git"
@@ -20,5 +24,11 @@
   "bugs": {
     "url": "https://github.com/TobiasBriones/example.math.computation.js.misc-computations-in-js/issues"
   },
-  "homepage": "https://github.com/TobiasBriones/example.math.computation.js.misc-computations-in-js#readme"
+  "homepage": "https://github.com/TobiasBriones/example.math.computation.js.misc-computations-in-js#readme",
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@jest/globals": "^26.6.2",
+    "jest": "^26.6.3"
+  }
 }
