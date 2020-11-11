@@ -5,7 +5,7 @@ Example project where I compute miscellaneous problems of applied math.
 
 The scripts are about:
 * **bisection-method.mjs:** Computes the root of a polynomial according to the bisection method. Basic implementation I
- made in 2016 to run the algorithm.
+ made in 2016 to run the algorithm. See also: [Example Project: Secant Method](https://github.com/TobiasBriones/example.math.numerical.polynomial.cpp.secant-method).
 * **eratosthenes-sieve.mjs:** Computes prime numbers by using the eratosthenes sieve algorithm. Basic implementation I
  made in 2016 to run the algorithm.
 
