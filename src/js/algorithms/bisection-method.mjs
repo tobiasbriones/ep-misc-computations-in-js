@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Monomial from '../tools/monomial.mjs';
-import Polynomial from '../tools/polynomial.mjs';
+import { Monomial } from '../tools/monomial.mjs';
+import { Polynomial } from '../tools/polynomial.mjs';
 
 const DEF_ITERATIONS_NUMBER = 50;
 const NO_ROOTS_MSG = `

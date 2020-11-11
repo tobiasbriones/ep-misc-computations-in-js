@@ -7,7 +7,7 @@
 
 import { VARIABLE_LITERAL_CHAR } from './math.mjs';
 
-export default class {
+export class Monomial {
   #factor;
   #exponent;
 
@@ -35,4 +35,4 @@ export default class {
   evaluate(value) {
     return this.#factor * Math.pow(value, this.#exponent);
   };
-};
+}

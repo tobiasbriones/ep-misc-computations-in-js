@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Monomial from './monomial.mjs';
+import { Monomial } from './monomial.mjs';
 
-export default class {
+export class Polynomial {
   #monomials;
 
   constructor() {
@@ -35,4 +35,4 @@ export default class {
     );
     return reducedMonomial.evaluate(value);
   };
-};
+}
