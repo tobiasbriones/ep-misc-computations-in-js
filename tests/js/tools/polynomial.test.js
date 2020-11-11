@@ -16,3 +16,9 @@ test('default polynomial is equals to zero', () => {
   expect(polynomial.evaluate(-1)).toBe(0);
   expect(polynomial.evaluate(1)).toBe(0);
 });
+
+test('polynomial evaluation', () => {
+  // ...
+});
+
+// keep testing...

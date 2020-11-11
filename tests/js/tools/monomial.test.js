@@ -18,3 +18,9 @@ test('is default monomial equals to zero', () => {
   expect(monomial.evaluate(-1)).toBe(0);
   expect(monomial.evaluate(1)).toBe(0);
 });
+
+test('monomial evaluation', () => {
+  // ...
+});
+
+// keep testing...
