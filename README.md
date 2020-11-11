@@ -15,6 +15,6 @@ The scripts are about:
 ## License
 Example Project: Miscellaneous computations in JS
 
-Copyright © 2019 Tobias Briones. All rights reserved.
+Copyright © 2019-2020 Tobias Briones. All rights reserved.
 
 This software is licensed under the [MIT License](https://github.com/TobiasBriones/example.math.computation.js.misc-computations-in-js/blob/master/LICENSE).
