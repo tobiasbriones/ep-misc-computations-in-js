@@ -28,7 +28,7 @@ export function getPrimes(length = 100) {
 
 function fillSieve(sieve, length) {
   const initialValue = sieve => {
-    return (sieve.length === 0) ? 2 : sieve[sieve.length - 1] + 1
+    return (sieve.length === 0) ? 2 : sieve[sieve.length - 1] + 1;
   };
   let value = initialValue(sieve);
 

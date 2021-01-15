@@ -18,7 +18,7 @@ export class Monomial {
 
   constructor(factor = 0, exponent = 0) {
     if (exponent < 0) {
-      const msg = `The exponent is a non-negative integer: ${exponent}`;
+      const msg = `The exponent is a non-negative integer: ${ exponent }`;
       throw new Error(msg);
     }
     this.#factor = factor;

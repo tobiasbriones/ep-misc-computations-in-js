@@ -18,11 +18,11 @@ export {
   PLUS_SIGN_CHAR,
   MINUS_SIGN_CHAR,
   VARIABLE_LITERAL_CHAR
-}
+};
 
 export {
   isSign
-}
+};
 
 function isSign(value) {
   return value === PLUS_SIGN_CHAR || value === MINUS_SIGN_CHAR;
