@@ -11,18 +11,20 @@
  */
 
 import { test } from '@jest/globals';
-import { Polynomial } from '../../../src/js/tools/polynomial.mjs';
+import { Monomial } from './monomial.mjs';
 
-test('default polynomial is equals to zero', () => {
-  const polynomial = new Polynomial();
+test('is default monomial equals to zero', () => {
+  const monomial = new Monomial();
 
-  expect(polynomial.isConstant()).toBe(true);
-  expect(polynomial.evaluate(0)).toBe(0);
-  expect(polynomial.evaluate(-1)).toBe(0);
-  expect(polynomial.evaluate(1)).toBe(0);
+  expect(monomial.getFactor()).toBe(0);
+  expect(monomial.getExponent()).toBe(0);
+  expect(monomial.isConstant()).toBe(true);
+  expect(monomial.evaluate(0)).toBe(0);
+  expect(monomial.evaluate(-1)).toBe(0);
+  expect(monomial.evaluate(1)).toBe(0);
 });
 
-test('polynomial evaluation', () => {
+test('monomial evaluation', () => {
   // ...
 });
 
