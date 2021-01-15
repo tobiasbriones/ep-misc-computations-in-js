@@ -30,14 +30,14 @@ export class Polynomial {
     return str;
   };
 
-  isConstant() {
+  get isConstant() {
     return this.#isConstant;
   }
 
   addMonomial(monomial) {
     this.#monomials.push(monomial);
 
-    if (!monomial.isConstant()) {
+    if (!monomial.isConstant) {
       this.#isConstant = false;
     }
   };

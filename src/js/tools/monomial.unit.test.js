@@ -16,9 +16,9 @@ import { Monomial } from './monomial.mjs';
 test('is default monomial equals to zero', () => {
   const monomial = new Monomial();
 
-  expect(monomial.getFactor()).toBe(0);
-  expect(monomial.getExponent()).toBe(0);
-  expect(monomial.isConstant()).toBe(true);
+  expect(monomial.factor).toBe(0);
+  expect(monomial.exponent).toBe(0);
+  expect(monomial.isConstant).toBe(true);
   expect(monomial.evaluate(0)).toBe(0);
   expect(monomial.evaluate(-1)).toBe(0);
   expect(monomial.evaluate(1)).toBe(0);

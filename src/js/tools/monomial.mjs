@@ -29,19 +29,19 @@ export class Monomial {
     return ` ${ this.#factor }${ VARIABLE_LITERAL_CHAR }^${ this.#exponent } `;
   };
 
-  getFactor() {
+  get factor() {
     return this.#factor;
   };
 
-  getExponent() {
+  get exponent() {
     return this.#exponent;
   };
 
-  isConstant() {
+  get isConstant() {
     return this.#exponent === 0;
   }
 
-  isFactorNegative() {
+  get isFactorNegative() {
     return this.#factor < 0;
   };
 
