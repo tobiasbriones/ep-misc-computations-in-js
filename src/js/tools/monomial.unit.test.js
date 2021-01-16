@@ -75,3 +75,9 @@ test('monomial evaluation (-4x^5)', () => {
   expect(monomial.evaluate(10)).toBe(-400_000);
   expect(monomial.evaluate(-10)).toBe(400_000);
 });
+
+test('throws exception for invalid args', () => {
+  expect(
+    () => new Monomial(1, -5)
+  ).toThrowError('The exponent is a non-negative integer: -5');
+});
