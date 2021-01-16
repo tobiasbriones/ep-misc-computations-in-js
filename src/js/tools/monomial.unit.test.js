@@ -87,6 +87,12 @@ test('throws exception for invalid args', () => {
   ).toThrowError('The exponent is a non-negative integer: -5');
 });
 
+test('not accept decimal exponent', () => {
+  expect(
+    () => new Monomial(1, 1.5)
+  ).toThrowError('The exponent is a non-negative integer: 1.5');
+});
+
 test('toString', () => {
   const m1 = new Monomial(5, 2);
   const m2 = new Monomial(-5, 2);
