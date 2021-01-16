@@ -24,8 +24,54 @@ test('is default monomial equals to zero', () => {
   expect(monomial.evaluate(1)).toBe(0);
 });
 
-test('monomial evaluation', () => {
-  // ...
+test('monomial evaluation (x^2)', () => {
+  const monomial = new Monomial(1, 2);
+
+  expect(monomial.factor).toBe(1);
+  expect(monomial.exponent).toBe(2);
+  expect(monomial.isConstant).toBe(false);
+  expect(monomial.evaluate(0)).toBe(0);
+  expect(monomial.evaluate(1)).toBe(1);
+  expect(monomial.evaluate(-1)).toBe(1);
+  expect(monomial.evaluate(10)).toBe(100);
+  expect(monomial.evaluate(-10)).toBe(100);
 });
 
-// keep testing...
+test('monomial evaluation (-x^2)', () => {
+  const monomial = new Monomial(-1, 2);
+
+  expect(monomial.factor).toBe(-1);
+  expect(monomial.exponent).toBe(2);
+  expect(monomial.isConstant).toBe(false);
+  expect(monomial.evaluate(0)).toBe(0);
+  expect(monomial.evaluate(1)).toBe(-1);
+  expect(monomial.evaluate(-1)).toBe(-1);
+  expect(monomial.evaluate(10)).toBe(-100);
+  expect(monomial.evaluate(-10)).toBe(-100);
+});
+
+test('monomial evaluation (4x^5)', () => {
+  const monomial = new Monomial(4, 5);
+
+  expect(monomial.factor).toBe(4);
+  expect(monomial.exponent).toBe(5);
+  expect(monomial.isConstant).toBe(false);
+  expect(monomial.evaluate(0)).toBe(0);
+  expect(monomial.evaluate(1)).toBe(4);
+  expect(monomial.evaluate(-1)).toBe(-4);
+  expect(monomial.evaluate(10)).toBe(400_000);
+  expect(monomial.evaluate(-10)).toBe(-400_000);
+});
+
+test('monomial evaluation (-4x^5)', () => {
+  const monomial = new Monomial(-4, 5);
+
+  expect(monomial.factor).toBe(-4);
+  expect(monomial.exponent).toBe(5);
+  expect(monomial.isConstant).toBe(false);
+  expect(monomial.evaluate(0)).toBe(0);
+  expect(monomial.evaluate(1)).toBe(-4);
+  expect(monomial.evaluate(-1)).toBe(4);
+  expect(monomial.evaluate(10)).toBe(-400_000);
+  expect(monomial.evaluate(-10)).toBe(400_000);
+});
