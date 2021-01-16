@@ -86,3 +86,11 @@ test('throws exception for invalid args', () => {
     () => new Monomial(1, -5)
   ).toThrowError('The exponent is a non-negative integer: -5');
 });
+
+test('toString', () => {
+  const m1 = new Monomial(5, 2);
+  const m2 = new Monomial(-5, 2);
+
+  expect(m1.toString()).toBe(' 5x^2 ');
+  expect(m2.toString()).toBe(' -5x^2 ');
+});
