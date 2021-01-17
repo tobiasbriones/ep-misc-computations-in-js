@@ -25,6 +25,18 @@ test('is default monomial equals to zero', () => {
   expect(monomial.evaluate(1)).toBe(0);
 });
 
+test('is default exponent equals to zero', () => {
+  const monomial = new Monomial(1);
+
+  expect(monomial.factor).toBe(1);
+  expect(monomial.exponent).toBe(0);
+  expect(monomial.isConstant).toBe(true);
+  expect(monomial.isFactorNegative).toBe(false);
+  expect(monomial.evaluate(0)).toBe(1);
+  expect(monomial.evaluate(-1)).toBe(1);
+  expect(monomial.evaluate(1)).toBe(1);
+});
+
 test('monomial evaluation (x^2)', () => {
   const monomial = new Monomial(1, 2);
 
