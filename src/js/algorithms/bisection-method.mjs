@@ -22,6 +22,7 @@ it and with a change of signs!
 
 export function runBisectionMethodExample() {
   const f = new Polynomial();
+  let bisectionMsg;
 
   console.log('');
   console.log('%cBisection method script', 'font-weight:bold;font-size:24px');
@@ -36,13 +37,17 @@ export function runBisectionMethodExample() {
     'Running bisection method for %cf(x) = x^6 - 3x - 1 in [-1, 0] and default iterations (50)',
     'font-weight:bold'
   );
-  console.log(bisect(f, [-1, 0]));
+  bisectionMsg = bisect(f, [-1, 0]).msg;
+
+  console.log(bisectionMsg);
   console.log('');
   console.log(
     'Running bisection method for %cf(x) = x^6 - 3x - 1 in [1, 2] and 8 iterations',
     'font-weight:bold'
   );
-  console.log(bisect(f, [1, 2], 8));
+  bisectionMsg = bisect(f, [1, 2], 8).msg;
+
+  console.log(bisectionMsg);
 
   console.log('');
   console.log('');
@@ -52,7 +57,11 @@ export function bisect(polynomial, interval, i = DEF_ITERATIONS_NUMBER) {
   const a = parseInt(interval[0]);
   const b = parseInt(interval[1]);
   const result = runBisectAlgorithm(polynomial, a, b, i);
-  return newBisectResultMsg(result);
+  const msg = newBisectResultMsg(result);
+  return {
+    result: result,
+    msg: msg
+  };
 }
 
 function runBisectAlgorithm(polynomial, aValue, bValue, iterationsNumber) {
