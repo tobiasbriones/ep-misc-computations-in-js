@@ -17,6 +17,12 @@ The scripts are about:
 - **eratosthenes-sieve.mjs:** Computes prime numbers by using the eratosthenes sieve algorithm.
   Basic implementation I made in 2016 to run the algorithm.
 
+## Getting started
+
+Run [index.html](./src/index.html) into a web server to check the results. For example, `http-server .\src\`.
+
+Run the tests with `npm run test`.
+
 ## Screenshots
 
 ![Screenshot 1](./docs/screenshot-1.png)
