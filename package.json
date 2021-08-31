@@ -1,5 +1,5 @@
 {
-  "name": "example.math.computation.js.misc-computations-in-js",
+  "name": "ep-misc-computations-in-js",
   "version": "1.0.1",
   "description": "Example project where I compute miscellaneous problems of applied math in JS",
   "private": true,
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TobiasBriones/example.math.computation.js.misc-computations-in-js.git"
+    "url": "git+https://github.com/tobiasbriones/ep-misc-computations-in-js.git"
   },
   "keywords": [
     "example-project",
@@ -21,9 +21,9 @@
   "author": "Tobias Briones <tobiasbriones.dev@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TobiasBriones/example.math.computation.js.misc-computations-in-js/issues"
+    "url": "https://github.com/tobiasbriones/ep-misc-computations-in-js/issues"
   },
-  "homepage": "https://github.com/TobiasBriones/example.math.computation.js.misc-computations-in-js#readme",
+  "homepage": "https://github.com/tobiasbriones/ep-misc-computations-in-js#readme",
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
